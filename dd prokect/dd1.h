@@ -17,18 +17,20 @@
 #define WHITE   "\x1b[37m"
 #define BOLD    "\x1b[1m"
 
+
 typedef struct orderProducts {
     int productCode;
     int quantify;                 
     int first;
-    orderProducts* next;
+    struct orderProducts *next;
 } orderProducts;
 
 typedef struct order {
     int clientCode;    // product identifier
     char businessName[NAME_LEN];     // Business name
-    orderProducts productList ;    
+    orderProducts *productList;    
 } order;
+
 
 typedef struct product {
     int productCode;    // product identifier
