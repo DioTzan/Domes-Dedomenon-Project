@@ -1,19 +1,12 @@
-
-
 #include "dd1.h"
+
 #include <stdlib.h>
 
 #include <stdio.h>
 
-void print(order newOrder);
-void sort_list(orderProducts *head);
-orderProducts* newProduct(orderProducts *head);
-void addorder();
-
-void addorder(){
+void addOrder(void){
     order newOrder;
     //orderProducts
-
 
     printf("give us your clientCode :");
     scanf("%d",&newOrder.clientCode);
@@ -22,19 +15,18 @@ void addorder(){
     printf("give us your businessName :");
     scanf("%s",&newOrder.businessName);
     while ((getchar()) != '\n');
-    orderProducts* head=NULL;
-    head=newOrder.productList;
+    
+    newOrder.productList=NULL;
 	int wantNewProduct=1;
 	printf("now y'll chose your products\n");
     while(wantNewProduct){
 		//adds the products in the list and create an new orderproduct struct
-		head=newProduct(head);
+		newOrder.productList=newProduct(newOrder.productList);
 
 		printf("do y want to add something else to your order;\nIf yes then type '1' else type '0' :");
         scanf("%d",&wantNewProduct);
         while ((getchar()) != '\n');
     }        	
-    newOrder.productList=head;
 	printf("thanks for the order, now its completed.\n");
 
 
@@ -52,7 +44,7 @@ orderProducts* newProduct(orderProducts *head){
         exit(1);
     }
 	printf("give us productCode :");
-	scanf("%d",&new->productCode);
+	scanf("%d",&new->productCode1);
     while ((getchar()) != '\n');
 	printf("give us your quantify :");
 	scanf("%d",&new->quantify);
@@ -62,16 +54,10 @@ orderProducts* newProduct(orderProducts *head){
     while ((getchar()) != '\n');
 	
 	
-	if(head == NULL)
-    {
-        new->next = NULL;
-        head = new;
-    }
-    else
-    {
-        new->next = head;
-        head = new;
-    }
+
+    new->next = head;
+    head = new;
+    
 	return head;
 }
 
@@ -92,9 +78,9 @@ void sort_list(orderProducts *head){
                 min_elem=current->next;
             if(min_elem!=current)
             {
-                tempNum=current->productCode;
-                current->productCode=current->next->productCode;
-                current->next->productCode=tempNum;
+                tempNum=current->productCode1;
+                current->productCode1=current->next->productCode1;
+                current->next->productCode1=tempNum;
                 tempNum=current->quantify;
                 current->quantify=current->next->quantify;
                 current->next->quantify=tempNum;
@@ -114,14 +100,11 @@ void print(order newOrder){
     printf("client code=%d\n",temp->clientCode);
     printf("business name=%s\n\n",temp->businessName);
 
-	orderProducts *temp2=newOrder.productList;
-	while ((temp2)==NULL)
-	{
-		printf("product code=%d\n",temp2->productCode);
-		printf("quantify=%d\n",temp2->quantify);
-		printf("first=%d\n",temp2->first);
-        temp2=temp2->next;
-	}
+	orderProducts *temp2=temp->productList;
+    while (temp2 != NULL) {
+        printf("product code=%d\n", temp2->productCode1);
+        printf("quantify=%d\n", temp2->quantify);
+        printf("first=%d\n", temp2->first);
+        temp2 = temp2->next;
+    }
 }
-
-
