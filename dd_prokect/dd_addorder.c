@@ -51,7 +51,7 @@ orderProducts* newProduct(orderProducts *head){
 	scanf("%d",&productCodeTemp);
     while ((getchar()) != '\n');
     for(i=0;i<MAX_PRODUCTS;i++){
-        if (products[i].productCode==productCodeTemp){
+        if ((atoi(products[i].ean))==productCodeTemp){
             flag=1;
             new->productCode1=productCodeTemp;
             break;
