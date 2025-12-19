@@ -35,7 +35,11 @@ void addOrder(void){
 }
 
 orderProducts* newProduct(orderProducts *head){
-
+    int flag=0;
+    int i;
+    int productCodeTemp;
+    int quantifyTemp;                 
+    int firstTemp;
 	orderProducts *new;
     new=(orderProducts *)malloc(sizeof(orderProducts));    
     if (new == NULL) 
@@ -44,20 +48,40 @@ orderProducts* newProduct(orderProducts *head){
         exit(1);
     }
 	printf("give us productCode :");
-	scanf("%d",&new->productCode1);
+	scanf("%d",productCodeTemp);
     while ((getchar()) != '\n');
-	printf("give us your quantify :");
-	scanf("%d",&new->quantify);
+    for(i=0;i<MAX_PRODUCTS;i++){
+        if (products[i].productCode==productCodeTemp){
+            flag=1;
+            new->productCode1=productCodeTemp;
+            break;
+        }
+    }
+    if(flag==0){
+        //den breuhke product
+        printf("\nthere is no such of an product here\n");
+        return head;
+    }
+	printf("\ngive us your quantify :");
+	scanf("%d",quantifyTemp);
     while ((getchar()) != '\n');
-	printf("give us your emergencyNumber for that order :");
-	scanf("%d",&new->first);
-    while ((getchar()) != '\n');
-	
-	
-
+    if (products[i].productVariable>=quantifyTemp){
+        flag=1;
+        new->quantify=quantifyTemp;
+    }
+    if(flag==0){
+        //den uparxeia apouema
+        printf("\nther is not of that much of varaiable \n");
+        return head;
+    }
+    do
+    {    
+        printf("give us your emergencyNumber for that order [1,10]:");
+        scanf("%d",firstTemp);
+        while ((getchar()) != '\n');
+    } while ((firstTemp<=0)&&(firstTemp>10));
     new->next = head;
     head = new;
-    
 	return head;
 }
 
