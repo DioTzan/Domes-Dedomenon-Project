@@ -71,7 +71,7 @@ orderProducts* newProduct(orderProducts *head){
     }
     if(flag==0){
         //den uparxeia apouema
-        printf("\nther is not of that much of varaiable \n");
+        printf("\nTher is not of that much of varaiable \n");
         return head;
     }
     do
