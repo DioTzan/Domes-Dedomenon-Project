@@ -83,6 +83,4 @@ int Menu(void) {
     
 }*/
 
-void makeOrder(void){
-    printf("Make Order\n");
-}
+
