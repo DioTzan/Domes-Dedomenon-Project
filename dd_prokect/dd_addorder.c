@@ -13,7 +13,7 @@ void addOrder(void){
     while ((getchar()) != '\n');
 
     printf("give us your businessName :");
-    scanf("%s",&newOrder.businessName);
+    scanf("%s",newOrder.businessName);
     while ((getchar()) != '\n');
     
     newOrder.productList=NULL;
@@ -48,7 +48,7 @@ orderProducts* newProduct(orderProducts *head){
         exit(1);
     }
 	printf("give us productCode :");
-	scanf("%d",productCodeTemp);
+	scanf("%d",&productCodeTemp);
     while ((getchar()) != '\n');
     for(i=0;i<MAX_PRODUCTS;i++){
         if (products[i].productCode==productCodeTemp){
@@ -63,7 +63,7 @@ orderProducts* newProduct(orderProducts *head){
         return head;
     }
 	printf("\ngive us your quantify :");
-	scanf("%d",quantifyTemp);
+	scanf("%d",&quantifyTemp);
     while ((getchar()) != '\n');
     if (products[i].productVariable>=quantifyTemp){
         flag=1;
@@ -77,7 +77,7 @@ orderProducts* newProduct(orderProducts *head){
     do
     {    
         printf("give us your emergencyNumber for that order [1,10]:");
-        scanf("%d",firstTemp);
+        scanf("%d",&firstTemp);
         while ((getchar()) != '\n');
     } while ((firstTemp<=0)&&(firstTemp>10));
     new->next = head;
