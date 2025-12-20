@@ -52,9 +52,7 @@ orderProducts* newProduct(orderProducts *head){
 	scanf("%ld",&productCodeTemp);
     while ((getchar()) != '\n');
     for(i=0;i<MAX_PRODUCTS;i++){
-    	a=atol(products[i].ean);
-    	printf("%ld",a);
-        if (a==productCodeTemp){
+        if ((atoi(products[i].ean))==productCodeTemp){
             flag=1;
             new->productCode1=productCodeTemp;
             break;
