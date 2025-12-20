@@ -32,9 +32,9 @@ typedef struct order {
 } order;
 
 typedef struct orderFIFO {
-    order* prev;
+    orderFIFO* prev;
     order data;
-    order* next;
+    orderFIFO* next;
 } orderFIFO;
 
 typedef struct product {
