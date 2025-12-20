@@ -27,9 +27,9 @@ void addOrder(void){
         scanf("%d",&wantNewProduct);
         while ((getchar()) != '\n');
     }        	
-	printf("thanks for the order, now its completed.\n");
+	printf("\nthanks for the order, now its completed.\n");
 
-
+	sort_list(newOrder.productList);
     print(newOrder);
 
 }
@@ -67,13 +67,15 @@ orderProducts* newProduct(orderProducts *head){
     }
 	printf("\ngive us your quantify :");
 	scanf("%d",&quantifyTemp);
+	new->quantify=quantifyTemp;
     while ((getchar()) != '\n');
     do
     {    
         printf("give us your emergencyNumber for that order [1,10]:");
         scanf("%d",&firstTemp);
         while ((getchar()) != '\n');
-    } while ((firstTemp<=0)&&(firstTemp>10));
+    } while ((firstTemp<=0)||(firstTemp>10));
+    new->first=firstTemp;
     new->next = head;
     head = new;
 	return head;
