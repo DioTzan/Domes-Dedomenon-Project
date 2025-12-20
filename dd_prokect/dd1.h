@@ -66,6 +66,10 @@ void makeOrder(orderFIFO* head);
 void print(order newOrder);
 void sort_list(orderProducts *head);
 orderProducts* newProduct(orderProducts *head);
+orderFIFO* createFIFO(order data);
+orderFIFO* addOrderToFIFO(orderFIFO *head, orderFIFO *tail, order data);
+order removeOrderFromFIFO(orderFIFO *head,orderFIFO *tail);
+
 
 // utility functions used by addProduct
 int find_product_by_ean(const char *ean);
