@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include"dd1.h"
 
-void makeOrder(void){
+void makeOrder(orderFIFO* head){
     printf("Make Order\n");
 }
