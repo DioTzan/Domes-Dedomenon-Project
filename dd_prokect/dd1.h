@@ -19,7 +19,7 @@
 
 
 typedef struct orderProducts {
-    int productCode1;
+    long int productCode1;
     int quantify;                 
     int first;
     struct orderProducts *next;
