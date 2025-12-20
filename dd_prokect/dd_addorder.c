@@ -35,9 +35,10 @@ void addOrder(void){
 }
 
 orderProducts* newProduct(orderProducts *head){
+    long int a;
     int flag=0;
     int i;
-    int productCodeTemp;
+    long int  productCodeTemp;
     int quantifyTemp;                 
     int firstTemp;
 	orderProducts *new;
@@ -48,10 +49,12 @@ orderProducts* newProduct(orderProducts *head){
         exit(1);
     }
 	printf("give us productCode :");
-	scanf("%d",&productCodeTemp);
+	scanf("%ld",&productCodeTemp);
     while ((getchar()) != '\n');
     for(i=0;i<MAX_PRODUCTS;i++){
-        if ((atoi(products[i].ean))==productCodeTemp){
+    	a=atol(products[i].ean);
+    	printf("%ld",a);
+        if (a==productCodeTemp){
             flag=1;
             new->productCode1=productCodeTemp;
             break;
