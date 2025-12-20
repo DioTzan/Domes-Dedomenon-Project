@@ -13,12 +13,13 @@ int Menu(void);
 void parse(char *input);
 
 void addProduct(void);
-void addOrder(void);
+order addOrder(void);
 void printStock(void);
-void makeOrder(void);
+void makeOrder(orderFIFO* head);
 
 int main (void){
 
+    orderFIFO*head,*tail;
     int option;
     option = Menu();
     printf("Please give a command\n");
@@ -28,13 +29,13 @@ int main (void){
                 addProduct();
                 break;
             case 2:     
-                addOrder();
+                tail = addOrderToFIFO(head,tail,addOrder());
                 break;
             case 3:    
                 printStock();
                 break;
             case 4:    
-                makeOrder();
+                makeOrder(head);
                 break;
             case 5:     //exit
                 printf("Exit\n");

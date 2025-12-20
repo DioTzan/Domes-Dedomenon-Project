@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-void addOrder(void){
+order addOrder(void){
     order newOrder;
     //orderProducts
 
@@ -32,6 +32,7 @@ void addOrder(void){
 	sort_list(newOrder.productList);
     print(newOrder);
 
+    return newOrder;
 }
 
 orderProducts* newProduct(orderProducts *head){
@@ -128,4 +129,48 @@ void print(order newOrder){
         printf("first=%d\n", temp2->first);
         temp2 = temp2->next;
     }
+}
+
+
+
+orderFIFO* createFIFO(order data) {
+    orderFIFO* newNode = (orderFIFO*)malloc(sizeof(orderFIFO));
+    if (!newNode) {
+        printf("Memory error\n");
+        return NULL;
+    }
+    newNode->data = data;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+    return newNode;
+}
+
+
+orderFIFO* addOrderToFIFO(orderFIFO *head, orderFIFO *tail, order data){
+    orderFIFO* newNode = createFIFO(data);
+    if (tail==NULL) {
+        head = newNode;
+        tail = newNode;
+    } else {
+        newNode->prev = tail;
+        tail = newNode;
+    }
+	return tail;
+}
+
+
+order removeOrderFromFIFO(orderFIFO *head,orderFIFO *tail) {
+
+    orderFIFO* temp = head;
+    order data = temp->data;
+    
+    if (head == tail) { // Only one element
+        tail = NULL;
+        head = NULL;
+    } else {
+        head = head->next;
+    }
+    
+    free(temp);
+    return data;
 }

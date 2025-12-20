@@ -28,9 +28,14 @@ typedef struct orderProducts {
 typedef struct order {
     int clientCode;    // product identifier
     char businessName[NAME_LEN];     // Business name
-    orderProducts *productList;    
+    orderProducts *productList;
 } order;
 
+typedef struct orderFIFO {
+    order* prev;
+    order data;
+    order* next;
+} orderFIFO;
 
 typedef struct product {
     int productCode;    // product identifier
