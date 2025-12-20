@@ -12,11 +12,6 @@
 int Menu(void);
 void parse(char *input);
 
-void addProduct(void);
-order addOrder(void);
-void printStock(void);
-void makeOrder(orderFIFO* head);
-
 int main (void){
 
     orderFIFO*head,*tail;

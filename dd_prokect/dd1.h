@@ -58,9 +58,9 @@ void parse(char *input);
 
 //Function declarations for menu operations
 void addProduct(void);
-void addOrder(void);
+order addOrder(void);
 void printStock(void);
-void makeOrder(void);
+void makeOrder(orderFIFO* head);
 
 // utility functions used by addOrder
 void print(order newOrder);
