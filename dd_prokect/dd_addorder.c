@@ -35,7 +35,7 @@ void addOrder(void){
 }
 
 orderProducts* newProduct(orderProducts *head){
-    long int a;
+    long int a=0;
     int flag=0;
     int i;
     long int  productCodeTemp;
@@ -68,15 +68,6 @@ orderProducts* newProduct(orderProducts *head){
 	printf("\ngive us your quantify :");
 	scanf("%d",&quantifyTemp);
     while ((getchar()) != '\n');
-    if (products[i].productVariable>=quantifyTemp){
-        flag=1;
-        new->quantify=quantifyTemp;
-    }
-    if(flag==0){
-        //den uparxeia apouema
-        printf("\nTher is not of that much of varaiable \n");
-        return head;
-    }
     do
     {    
         printf("give us your emergencyNumber for that order [1,10]:");
@@ -93,6 +84,7 @@ void sort_list(orderProducts *head){
     if(head==NULL)
         return;
     int sorted,i,j,tempNum;
+    long int temp;
     char tempWord[45];
     do
     {
@@ -105,9 +97,9 @@ void sort_list(orderProducts *head){
                 min_elem=current->next;
             if(min_elem!=current)
             {
-                tempNum=current->productCode1;
+                temp=current->productCode1;
                 current->productCode1=current->next->productCode1;
-                current->next->productCode1=tempNum;
+                current->next->productCode1=temp;
                 tempNum=current->quantify;
                 current->quantify=current->next->quantify;
                 current->next->quantify=tempNum;
@@ -129,7 +121,7 @@ void print(order newOrder){
 
 	orderProducts *temp2=temp->productList;
     while (temp2 != NULL) {
-        printf("product code=%d\n", temp2->productCode1);
+        printf("product code=%ld\n", temp2->productCode1);
         printf("quantify=%d\n", temp2->quantify);
         printf("first=%d\n", temp2->first);
         temp2 = temp2->next;
