@@ -24,7 +24,7 @@ int main (void){
                 addProduct();
                 break;
             case 2:     
-                tail = addOrderToFIFO(head,tail,addOrder());
+                tail = addOrderToFIFO(&head,&tail,addOrder());
                 break;
             case 3:    
                 printStock();
@@ -34,7 +34,7 @@ int main (void){
                     printf("there are no order to execute");
                     break;
                 }
-                makeOrder(head,tail);
+                makeOrder(&head,&tail);
                 break;
             case 5:     //exit
                 printf("Exit\n");

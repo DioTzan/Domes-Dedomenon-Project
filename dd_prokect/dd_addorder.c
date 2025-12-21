@@ -145,15 +145,19 @@ orderFIFO* createFIFO(order data) {
 }
 
 
-orderFIFO* addOrderToFIFO(orderFIFO *head, orderFIFO *tail, order data){
+orderFIFO* addOrderToFIFO(orderFIFO **head, orderFIFO **tail, order data){
     orderFIFO* newNode = createFIFO(data);
-    if ((tail==NULL)&&(head==NULL)) {
-        head = newNode;
-        tail = newNode;
-    } else {
-        newNode->prev = tail;
-        tail = newNode;
+    if (newNode == NULL) {
+        return *tail;  
     }
-	return tail;
+    if ((*tail==NULL)&&(*head==NULL)) {
+        *head = newNode;
+        *tail = newNode;
+    } else {
+        newNode->prev = *tail;
+        (*tail)->next = newNode;
+        *tail = newNode;
+    }
+	return *tail;
 }
 

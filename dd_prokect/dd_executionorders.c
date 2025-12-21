@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include"dd1.h"
 
-void makeOrder(orderFIFO* head, orderFIFO *tail){
+void makeOrder(orderFIFO **head, orderFIFO **tail){
     printf("Excecute Order\n");
     order data;
     do
@@ -11,21 +11,24 @@ void makeOrder(orderFIFO* head, orderFIFO *tail){
         printf("after remuve funcrion\n");
         print(data);
 
-    } while ((head != NULL)||(tail!=NULL));
+    } while ((*head != NULL)&&(*tail!=NULL));
 
 }
 
 
-order removeOrderFromFIFO(orderFIFO *head,orderFIFO *tail) {
+order removeOrderFromFIFO(orderFIFO **head, orderFIFO **tail) {
 
-    orderFIFO* temp = head;
+    orderFIFO* temp = *head;
     order data = temp->data;
     
-    if (head == tail) { // Only one element
-        tail = NULL;
-        head = NULL;
+    if (*head == *tail) { // Only one element
+        *head = NULL;
+        *tail = NULL;
     } else {
-        head = head->next;
+        *head = (*head)->next;
+        if (*head != NULL) {
+            (*head)->prev = NULL;
+        }
     }
     
     free(temp);
