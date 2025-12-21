@@ -6,10 +6,12 @@ void makeOrder(orderFIFO* head, orderFIFO *tail){
     order data;
     do
     {
+        printf("got in to the delete while loop\n");
         data=removeOrderFromFIFO(head,tail);
+        printf("after remuve funcrion\n");
         print(data);
 
-    } while ((head != NULL)&&(tail!=NULL));
+    } while ((head != NULL)||(tail!=NULL));
 
 }
 
