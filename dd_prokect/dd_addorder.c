@@ -30,7 +30,8 @@ order addOrder(void){
 	printf("\nthanks for the order, now its completed.\n");
 
 	sort_list(newOrder.productList);
-    tempPrint(newOrder);
+    // // τεστινγ 
+    // tempPrint(newOrder);
 
     return newOrder;
 }
