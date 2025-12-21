@@ -1,0 +1,137 @@
+Onomata Tzanatos Dionyses        Kwnstantinos Velissaris                                                                                                                                                                                                                                                                                                                                                                                                                                                  /*usterogrfo kwnstantinos belissaris (-; */
+AM      2022202400203            2022202400021                                                                                                                                                                                                                                                                                                                                                                                                                                                            /*usterogrfo dionisis tzanatos  */
+Mail    dit24203@go.uop.gr       dit24021@go.uop.gr
+
+
+
+Περιγραφή αρχιτεκτονικής project 
+
+Βασικές δομές δεδομένων
+
+1. products[] (στατικός πίνακας, μέγιστο 200 προϊόντα)
+   - product struct: productCode, productName, ean[EAN_LEN], productVariable (stock), productPrice
+   - Στο dd_storage.c, global σε όλα τα αρχεία
+   - Χρησιμοποιείται σαν κεντρική βάση δεδομένων για τα προϊόντα
+
+2. orderProducts (λίστα)
+   - productCode1, quantify, first (προτεραιότητα 1-10), *next
+   - Κάθε order έχει μια λίστα από orderProducts αφου μια order μπορεί αν έχει περισσότερα απο ένα προιόν 
+   - Ταξινομείται με βάση την προτερεότητα (10=υψηλότερη)
+
+3. orderFIFO (διπλά συνδεδεμένη λίστα / ουρά)
+   - *prev, order data, *next
+   - Ουρά αναμονής παραγγελιών (FIFO)
+   - head και tail pointers αρχηκοποιούνται στο main()
+
+==== Ροή προγράμματος
+
+main() στο dd1.c
+   καλεί Menu() -> επιστρέφει επιλογή (1-5)
+   switch με την επιλογή:
+   case 1 -> καλεί addProduct()
+   case 2 -> καλεί addOrderToFIFO() που καλεί addOrder() σαν παράμετρο 
+   case 3 -> καλεί printStock()
+   case 4 -> καλεί makeOrder() που εκτελεί τις παραγγελίες (θα μπορούσε να έχει και καλύτερο όνομα αλλά δεν προλαβένω να αλλάχω ολο το προτζεκτ =)
+   case 5 -> έξοδος
+
+====== Λειτουργίες και αρχεία
+
+1. Προσθήκη προϊόντος (dd_addproduct.c)
+   addProduct() καλεί:
+   -> validate_ean() στο dd_validate.c (ελέγχει EAN: 13 ψηφία, ή 4-12 για προτάσεις)
+   -> find_product_by_ean() στο dd_findproduct.c (ψάχνει στον products[])
+   -> αν το προϊόν υπάρχει: ενημερώνει stock
+   -> αν δεν υπάρχει: δημιουργεί νέο προϊόν, το προσθέτει στο products[]
+
+2. Δημιουργία παραγγελίας (dd_addorder.c)
+   addOrder() καλεί:
+   -> διαβάζει clientCode, businessName
+   -> καλεί newProduct() για κάθε προϊόν 
+        -> newProduct() διαβάζει EAN, ψάχνει στον products[] αν υπάρχει
+        -> διαβάζει quantify, first(προτερεότητα), δημιουργεί orderProducts node
+        -> προσθέτει στη λίστα newOrder.productList (στην λιστα απο προιόντα )
+   -> καλεί sort_list() (ταξινομεί προϊόντα με first, 10->1)
+   -> καλεί addOrderToFIFO() (προσθέτει στην FIFO orderFIFO την παραγκελία order )
+
+3. Εκτύπωση αποθεμάτων (dd_printstock.c)
+   printStock() κάνει:
+   -> αν είσοδος = "*": εκτυπώνει όλα τα products[]
+   -> αν είσοδος = EAN ή όνομα: ψάχνει με strcmp/strncmp/strstr
+   -> εκτυπώνει προϊόντα που ταιριάζουν
+
+4. Εκτέλεση παραγγελιών (dd_executionorders.c)
+   makeOrder() καλεί:
+   -> removeOrderFromFIFO() (αφαιρεί order από την ουρά αφού θα εκτελεστεί )
+   -> exePrint() (εκτελεί για καθε προιόν, απο την παραγγελία που κανει return η remove, και τα κανει print με κατάληλα μυνήματα )
+        -> exePrint():
+            -> ψάχνει στον products[] με το EAN για το να ξέρει ποιό είναι το product [ex. product[4]]
+            -> αν υπάρχει αρκετό stock: αφαιρεί από productVariable
+            -> αν δεν υπάρχει αρκετό: εκτυπώνει μήνυμα, χρησιμοποιεί όσο υπάρχει και το product[4].productVariable το κάνει 0 αφού θα έχει δόσε οτι είχε 
+            -> εκτυπώνει γραμμή παραγγελίας (όνομα, ποσότητα, τιμή, σύνολο χρημάτων)
+   -> επιστροφή στην makeOrder(), επόμενη παραγγελία και πάλι το ήδιο μέχρι να τελειώσοθν οι παραγκελίες 
+
+==  Ποιο αρχείο καλεί ποιο και τι σθναρτήσες έχει το κάθε αρχείο 
+
+dd1.c ("main") καλεί:
+   -> addProduct() στο dd_addproduct.c
+   -> addOrder() στο dd_addorder.c 
+   -> printStock() στο dd_printstock.c
+   -> makeOrder() στο dd_executionorders.c
+
+dd_addproduct.c καλεί:
+   -> validate_ean() στο dd_validate.c
+   -> suggest_codes() στο dd_validate.c
+   -> find_product_by_ean() στο dd_findproduct.c
+   (και γράφει/διαβάζει από products[] στο dd_storage.c)
+
+dd_addorder.c καλεί:
+   -> newProduct()
+   -> sort_list()
+   -> tempPrint()
+   -> createFIFO()
+   -> addOrderToFIFO()
+
+dd_executionorders.c καλεί:
+   -> removeOrderFromFIFO()
+   -> exePrint()
+   -> print() (για απλή εκτύπωση χωρίς επεξεργασία)
+
+dd_printstock.c καλεί:
+   (κανένα άλλο αρχείο, απλά διαβάζει από products[])
+
+dd_validate.c καλεί:
+   (κανένα άλλο αρχείο, απλά διαβάζει από products[] για προτάσεις)
+
+dd_findproduct.c καλεί:
+   (κανένα άλλο αρχείο, απλά διαβάζει από products[])
+
+Σύνδεση μεταξύ δομών
+
+products[] (πίνακας) χρησιμοποιείται από:
+   -> dd_addproduct.c (γράψιμο/διάβασμα)
+   -> dd_printstock.c (διάβασμα)
+   -> dd_findproduct.c (διάβασμα)
+   -> dd_validate.c (διάβασμα για προτάσεις)
+   -> dd_addorder.c (διάβασμα για έλεγχο ύπαρξης προϊόντος)
+   -> dd_executionorders.c (διάβασμα και εγγραφή για stock update)
+
+orderProducts (λίστα) υπάρχει μόνο μέσα στο order struct
+   -> δημιουργείται στο newProduct() στο dd_addorder.c
+   -> χρησιμοποιείται στο exePrint() και print() στο dd_executionorders.c
+
+orderFIFO (ουρά) διαχειρίζεται στην main()
+   -> προσθήκη με addOrderToFIFO() στο dd_addorder.c
+   -> αφαίρεση με removeOrderFromFIFO() στο dd_executionorders.c
+   -> εκτέλεση με makeOrder() στο dd_executionorders.c
+
+Σημαντικά σημεία που μπορεί να μπερδέψουν 
+
+- Το products[] είναι global, οπότε όλα τα αρχεία βλέπουν τον ίδιο πίνακα
+- Κάθε order έχει τη δική της λίστα orderProducts
+- Η ουρά orderFIFO είναι διπλά συνδεδεμένη για εύκολη διαγραφή από την αρχή και έθκολη εισαγωγή απο το τέλος (ορισμός της ουράς)
+- Η προτεραιότητα (first) είναι 1-10, 10 = πιο επείγον για προιόν 
+- Σε περίπτωση που λείπει stock, το πρόγραμμα δεν σταματάει, απλά ενημερώνει
+- Τα EAN πρέπει να είναι 13 ψηφία, αλλά δέχεται 4-12 για προτάσεις 
+- Η αναζήτηση στο printStock() είναι case-insensitive για ονόματα
+
+Ευχαριστούμε πολύ!
