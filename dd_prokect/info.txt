@@ -1,0 +1,70 @@
+Onomata: Tzanatos Dionyses   Velissaris Konstantinos
+AM:      2022202400203       2022202400021
+Mail:    dit24203@go.uop.gr  dit24021@go.uop.gr
+
+Σύνοψη
+
+main (dd1.c): Εμφανίζει το μενού (Menu) και καλεί τις λειτουργίες ανάλογα με την επιλογή:
+
+1 → addProduct()
+2 → addOrder()
+3 → printStock()
+4 → makeOrder()
+5 → έξοδος
+
+Μενού / είσοδο
+Menu() (dd1.c): διαβάζει επιλογή χρήστη και την επιστρέφει στο main.
+
+Προσθήκη / ενημέρωση προϊόντος
+
+addProduct() (dd_addproduct.c):
+1) διαβάζει EAN
+2) καλεί validate_ean()
+3) αν υπάρχει το προϊόν (μέσω find_product_by_ean()) ενημερώνει το stock, αλλιώς διαβάζει όνομα/τιμή/ποσότητα και αποθηκεύει νέο προϊόν στο products.
+
+Αναζήτηση / έλεγχος κωδικού
+
+find_product_by_ean() (dd_findproduct.c): γραμμική αναζήτηση στον πίνακα products, επιστρέφει index ή -1.
+
+validate_ean() + suggest_codes() (dd_validate.c): ελέγχουν μήκος/μορφή EAN, αν το EAN είναι σύντομο (4..12) προτείνουν υπάρχοντα codes με ίδιο πρόθεμα.
+
+Εκτύπωση αποθέματος
+
+printStock() (dd_printstock.c): δέχεται * (όλο το απόθεμα), πλήρη EAN, πρόθεμα ή μέρος ονόματος και εκτυπώνει τα αντίστοιχα προϊόντα.
+Αποθήκευση προϊόντων
+
+products[], product_count (dd_storage.c): το κεντρικό array που μοιράζονται όλα τα modules.
+
+Προσθήκη παραγγελίας
+addOrder() (dd_addorder.c):
+1) διαβάζει κωδικό πελάτη και όνομα επιχείρησης
+2) για κάθε προϊόν: διαβάζει EAN, ποσότητα και προτεραιότητα (1-10)
+3) δημιουργεί λίστα προϊόντων (orderProducts) ταξινομημένη κατά προτεραιότητα
+4) προσθέτει την παραγγελία στην ουρά (FIFO) μέσω addOrderToFIFO()
+
+Εκτέλεση παραγγελιών
+makeOrder() (dd_executionorders.c):
+1) αφαιρεί παραγγελίες από την ουρά (FIFO) με removeOrderFromFIFO()
+2) για κάθε παραγγελία: ελέγχει διαθεσιμότητα, ενημερώνει stock, εκτυπώνει απόδειξη
+3) σε περίπτωση ελλιπούς αποθέματος: ενημερώνει χρήστη και συνεχίζει
+4) απελευθερώνει μνήμη με freeProductList()
+
+Ποιοι τύποι δομών χρησιμοποιούνται και γιατί
+
+1. Στατικός πίνακας (products[]):
+   Χρησιμοποιείται για την αποθήκευση προϊόντων. Επιλέχθηκε γιατί είναι απλός, deterministic και εύκολος στην υλοποίηση. Είναι κατάλληλος για μικρό αριθμό προϊόντων (μέχρι 200) και επιτρέπει γραμμική αναζήτηση κατά EAN/όνομα.
+
+2. Μονοσυνδεδεμένη λίστα (orderProducts):
+   Χρησιμοποιείται μέσα σε κάθε παραγγελία για την αποθήκευση πολλαπλών προϊόντων. Επιτρέπει δυναμική προσθήκη προϊόντων και ταξινόμηση κατά προτεραιότητα.
+
+3. Διπλά συνδεδεμένη λίστα ως ουρά FIFO (orderFIFO):
+   Χρησιμοποιείται ως ουρά αναμονής για τις παραγγελίες. Εγγυάται ότι οι παραγγελίες εκτελούνται με τη σειρά που εισήχθησαν (First-In-First-Out). Η διπλή σύνδεση διευκολύνει την αφαίρεση από την αρχή και την προσθήκη στο τέλος.
+
+Πως καλούνται τα αρχεία/συναρτήσεις
+dd1.c -> Menu(), addProduct() (dd_addproduct.c), addOrder() (dd_addorder.c), printStock() (dd_printstock.c), makeOrder() (dd_executionorders.c)
+dd_addproduct.c -> validate_ean() & suggest_codes() (dd_validate.c), find_product_by_ean() (dd_findproduct.c), γράφει/διαβάζει products[] (dd_storage.c)
+dd_addorder.c -> newProduct(), sort_list(), addOrderToFIFO(), createFIFO()
+dd_executionorders.c -> removeOrderFromFIFO(), exePrint(), freeProductList(), print()
+dd_printstock.c -> διαβάζει products[] για εκτύπωση/αναζήτηση
+dd_findproduct.c -> διαβάζει products[]
+dd_validate.c -> διαβάζει products[] (για προτάσεις)
