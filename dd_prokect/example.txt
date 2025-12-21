@@ -1,3 +1,4 @@
+
 ┌─────────────────────────┐
 │           Ε Α Ν         │
 └─────────────────────────┘
@@ -7,15 +8,14 @@ Press 2add order
 Press 3to print stock
 Press 4to make order
 Press 5to exit
-
 1
 Please give a command
 --- Add / Ενημερωση πρωιντος---
-bro Δωσε ean :1111111111111
-Δωσε ονομα προϊοντος: kalampoko
-Δωσε τιμη προϊοντος: 21
-Δωσε ποσοτητα προϊοντος: 132
-προιον προσθεθηκε: kalampoko (Ean=1111111111111). Διαθεσιμο αποθεμα: 132.
+bro Δωσε ean :1234567891234
+Δωσε ονομα προϊοντος: makaronia
+Δωσε τιμη προϊοντος: 2.3
+Δωσε ποσοτητα προϊοντος: 12
+προιον προσθεθηκε: makaronia (Ean=1234567891234). Διαθεσιμο αποθεμα: 12.
 
 ┌─────────────────────────┐
 │           Ε Α Ν         │
@@ -27,43 +27,29 @@ Press 3to print stock
 Press 4to make order
 Press 5to exit
 1
+--- Add / Ενημερωση πρωιντος---
+bro Δωσε ean :9876543219876
+Δωσε ονομα προϊοντος: ryzi
+Δωσε τιμη προϊοντος: 2.7
+Δωσε ποσοτητα προϊοντος: 43
+προιον προσθεθηκε: ryzi (Ean=9876543219876). Διαθεσιμο αποθεμα: 43.
+
+┌─────────────────────────┐
+│           Ε Α Ν         │
+└─────────────────────────┘
+
+Press 1add product
+Press 2add order
+Press 3to print stock
+Press 4to make order
+Press 5to exit
+1 
 --- Add / Ενημερωση πρωιντος---
 bro Δωσε ean :2222222222222
-Δωσε ονομα προϊοντος: piramides
-Δωσε τιμη προϊοντος: 12345
-Δωσε ποσοτητα προϊοντος: 23
-προιον προσθεθηκε: piramides (Ean=2222222222222). Διαθεσιμο αποθεμα: 23.
-
-┌─────────────────────────┐
-│           Ε Α Ν         │
-└─────────────────────────┘
-
-Press 1add product
-Press 2add order
-Press 3to print stock
-Press 4to make order
-Press 5to exit
-1
---- Add / Ενημερωση πρωιντος---
-bro Δωσε ean :33333333333333333
-Λαθος Ean.
-
-┌─────────────────────────┐
-│           Ε Α Ν         │
-└─────────────────────────┘
-
-Press 1add product
-Press 2add order
-Press 3to print stock
-Press 4to make order
-Press 5to exit
-1
---- Add / Ενημερωση πρωιντος---
-bro Δωσε ean :3333333333333
-Δωσε ονομα προϊοντος: pastourmas
-Δωσε τιμη προϊοντος: 41 
-Δωσε ποσοτητα προϊοντος: 33
-προιον προσθεθηκε: pastourmas (Ean=3333333333333). Διαθεσιμο αποθεμα: 33.
+Δωσε ονομα προϊοντος: pyramides
+Δωσε τιμη προϊοντος: 45
+Δωσε ποσοτητα προϊοντος: 2
+προιον προσθεθηκε: pyramides (Ean=2222222222222). Διαθεσιμο αποθεμα: 2.
 
 ┌─────────────────────────┐
 │           Ε Α Ν         │
@@ -75,96 +61,47 @@ Press 3to print stock
 Press 4to make order
 Press 5to exit
 2
-give us your clientCode :129021
-give us your businessName :kalampokosporoi
+give us your clientCode :0213
+give us your businessName :marinopoulos
 now y'll chose your products
-give us productCode :1111111111111
-
-give us your quantify :32
-give us your emergencyNumber for that order [1,10]:10
-do y want to add something else to your order;
-If yes then type '1' else type '0' :1
 give us productCode :2222222222222
 
-give us your quantify :32
+give us your quantify :1
 give us your emergencyNumber for that order [1,10]:12
-give us your emergencyNumber for that order [1,10]:4
-do y want to add something else to your order;
-If yes then type '1' else type '0' :0
-
-thanks for the order, now its completed.
-client code=129021
-business name=kalampokosporoi
-
-product code=1111111111111
-quantify=32
-first=10
-product code=2222222222222
-quantify=32
-first=4
-
-┌─────────────────────────┐
-│           Ε Α Ν         │
-└─────────────────────────┘
-
-Press 1add product
-Press 2add order
-Press 3to print stock
-Press 4to make order
-Press 5to exit
-2
-give us your clientCode :2391902
-give us your businessName :mpriam
-now y'll chose your products
-give us productCode :3333333333333
-
-give us your quantify :123
 give us your emergencyNumber for that order [1,10]:10
 do y want to add something else to your order;
 If yes then type '1' else type '0' :1
-give us productCode :2222222222222
+give us productCode :1234567891234
 
-give us your quantify :32
+give us your quantify :3
+give us your emergencyNumber for that order [1,10]:6
+do y want to add something else to your order;
+If yes then type '1' else type '0' :1
+give us productCode :9876543219876
+
+give us your quantify :23
 give us your emergencyNumber for that order [1,10]:8
 do y want to add something else to your order;
+If yes then type '1' else type '0' :1
+give us productCode :44
+
+there is no such of an product here
+do y want to add something else to your order;
 If yes then type '1' else type '0' :0
 
 thanks for the order, now its completed.
-client code=2391902
-business name=mpriam
+client code=213
+business name=marinopoulos
 
-product code=3333333333333
-quantify=123
-first=10
 product code=2222222222222
-quantify=32
+quantify=1
+first=10
+product code=9876543219876
+quantify=23
 first=8
-
-┌─────────────────────────┐
-│           Ε Α Ν         │
-└─────────────────────────┘
-
-Press 1add product
-Press 2add order
-Press 3to print stock
-Press 4to make order
-Press 5to exit
-3
-Δωσε κωδικο ή ονομα ('*' εκτυπονη τα παντα :) ): 1111111111111
-0: kalampoko | EAN:1111111111111 | Price:21.000000 | Stock:132
-
-┌─────────────────────────┐
-│           Ε Α Ν         │
-└─────────────────────────┘
-
-Press 1add product
-Press 2add order
-Press 3to print stock
-Press 4to make order
-Press 5to exit
-3
-Δωσε κωδικο ή ονομα ('*' εκτυπονη τα παντα :) ): kalampoko
-0: kalampoko | EAN:1111111111111 | Price:21.000000 | Stock:132
+product code=1234567891234
+quantify=3
+first=6
 
 ┌─────────────────────────┐
 │           Ε Α Ν         │
@@ -178,9 +115,9 @@ Press 5to exit
 3
 Δωσε κωδικο ή ονομα ('*' εκτυπονη τα παντα :) ): *
 --Γεματοι απο αποθεμα Μπροκολοκο  --
-0: kalampoko | EAN:1111111111111 | Price:21.000000 | Stock:132
-1: piramides | EAN:2222222222222 | Price:12345.000000 | Stock:23
-2: pastourmas | EAN:3333333333333 | Price:41.000000 | Stock:33
+0: makaronia | EAN:1234567891234 | Price:2.300000 | Stock:12
+1: ryzi | EAN:9876543219876 | Price:2.700000 | Stock:43
+2: pyramides | EAN:2222222222222 | Price:45.000000 | Stock:2
 
 ┌─────────────────────────┐
 │           Ε Α Ν         │
@@ -192,29 +129,34 @@ Press 3to print stock
 Press 4to make order
 Press 5to exit
 4
-#----Client code=129021 ----#
-#----Business name=kalampokosporoi ----#
+#----Client code=213 ----#
+#----Business name=marinopoulos ----#
 
   --- PRODUCTS ---
 
-- kalampoko  (32) * 21.000000  =  672.000000 
+- pyramides  (1) * 45.000000  =  45.000000 
 
---There is not enough stock for product piramides. Available stock: 23, requested: 32 but we are gonna give y what we have, all the Available stock
-- piramides  (23) * 12345.000000  =  283935.000000
+- ryzi  (23) * 2.700000  =  62.100000 
 
-
-#----Client code=2391902 ----#
-#----Business name=mpriam ----#
-
-  --- PRODUCTS ---
-
---There is not enough stock for product pastourmas. Available stock: 33, requested: 123 but we are gonna give y what we have, all the Available stock
-- pastourmas  (33) * 41.000000  =  1353.000000
-
---There is not enough stock for product piramides. Available stock: 0, requested: 32 but we are gonna give y what we have, all the Available stock
-- piramides  (0) * 12345.000000  =  0.000000
+- makaronia  (3) * 2.300000  =  6.900000 
 
 
+
+┌─────────────────────────┐
+│           Ε Α Ν         │
+└─────────────────────────┘
+
+Press 1add product
+Press 2add order
+Press 3to print stock
+Press 4to make order
+Press 5to exit
+3
+Δωσε κωδικο ή ονομα ('*' εκτυπονη τα παντα :) ): *
+--Γεματοι απο αποθεμα Μπροκολοκο  --
+0: makaronia | EAN:1234567891234 | Price:2.300000 | Stock:9
+1: ryzi | EAN:9876543219876 | Price:2.700000 | Stock:20
+2: pyramides | EAN:2222222222222 | Price:45.000000 | Stock:1
 
 ┌─────────────────────────┐
 │           Ε Α Ν         │
@@ -236,5 +178,43 @@ Press 2add order
 Press 3to print stock
 Press 4to make order
 Press 5to exit
-5
+3
+Δωσε κωδικο ή ονομα ('*' εκτυπονη τα παντα :) ): 1234567891234
+0: makaronia | EAN:1234567891234 | Price:2.300000 | Stock:9
 
+┌─────────────────────────┐
+│           Ε Α Ν         │
+└─────────────────────────┘
+
+Press 1add product
+Press 2add order
+Press 3to print stock
+Press 4to make order
+Press 5to exit
+3       
+Δωσε κωδικο ή ονομα ('*' εκτυπονη τα παντα :) ): ryzi
+1: ryzi | EAN:9876543219876 | Price:2.700000 | Stock:20
+
+┌─────────────────────────┐
+│           Ε Α Ν         │
+└─────────────────────────┘
+
+Press 1add product
+Press 2add order
+Press 3to print stock
+Press 4to make order
+Press 5to exit
+3
+Δωσε κωδικο ή ονομα ('*' εκτυπονη τα παντα :) ): 4
+Δεν εχουμε τετοια πρωιοντα '4'.
+
+┌─────────────────────────┐
+│           Ε Α Ν         │
+└─────────────────────────┘
+
+Press 1add product
+Press 2add order
+Press 3to print stock
+Press 4to make order
+Press 5to exit
+5
