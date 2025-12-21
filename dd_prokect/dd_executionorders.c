@@ -7,7 +7,7 @@ void makeOrder(orderFIFO **head, orderFIFO **tail){
     {
         data=removeOrderFromFIFO(head,tail);        
         data=exePrint(data);
-        
+        printf("\n\n");
     } while ((*head != NULL)&&(*tail!=NULL));
 
 }
