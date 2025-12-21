@@ -72,7 +72,7 @@ order exePrint(order Order){
         /*printf("-Product code=%s\n", temp2->productCode1);
         printf("-Quantify=%d\n", temp2->quantify);
         printf("-First=%d\n", temp2->first);*/
-        for(i=0;i<MAX_PRODUCTS;i++){
+        for(i=0;i<product_count;i++){
             if (strcmp(products[i].ean ,temp2->productCode1)==0){
                 break;
             }
