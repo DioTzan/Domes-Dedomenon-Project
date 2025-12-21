@@ -63,6 +63,7 @@ orderProducts* newProduct(orderProducts *head){
     if(flag==0){
         //den breuhke product
         printf("\nthere is no such of an product here\n");
+        free(new);
         return head;
     }
 	printf("\ngive us your quantify :");

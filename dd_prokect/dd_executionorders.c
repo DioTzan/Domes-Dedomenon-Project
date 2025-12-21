@@ -8,10 +8,18 @@ void makeOrder(orderFIFO **head, orderFIFO **tail){
         data=removeOrderFromFIFO(head,tail);        
         data=exePrint(data);
         printf("\n\n");
+        freeProductList(data.productList);
     } while ((*head != NULL)&&(*tail!=NULL));
 
 }
 
+void freeProductList(orderProducts *head) {
+    while (head != NULL) {
+        orderProducts *temp = head;
+        head = head->next;
+        free(temp);
+    }
+}
 
 order removeOrderFromFIFO(orderFIFO **head, orderFIFO **tail) {
 
