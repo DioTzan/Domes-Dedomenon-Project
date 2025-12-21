@@ -30,7 +30,7 @@ order addOrder(void){
 	printf("\nthanks for the order, now its completed.\n");
 
 	sort_list(newOrder.productList);
-    print(newOrder);
+    tempPrint(newOrder);
 
     return newOrder;
 }
@@ -39,7 +39,7 @@ orderProducts* newProduct(orderProducts *head){
     long int a=0;
     int flag=0;
     int i;
-    long int  productCodeTemp;
+    char productCodeTemp[EAN_LEN];
     int quantifyTemp;                 
     int firstTemp;
 	orderProducts *new;
@@ -50,14 +50,13 @@ orderProducts* newProduct(orderProducts *head){
         exit(1);
     }
 	printf("give us productCode :");
-	scanf("%ld",&productCodeTemp);
+	scanf("%s",productCodeTemp);
     while ((getchar()) != '\n');
     for(i=0;i<MAX_PRODUCTS;i++){
-        a=atol(products[i].ean);
-    	printf("%ld",a);
-        if (a==productCodeTemp){
+        
+        if (strcmp(products[i].ean , productCodeTemp)==0){
             flag=1;
-            new->productCode1=productCodeTemp;
+            strcpy(new->productCode1,productCodeTemp);
             break;
         }
     }
@@ -87,7 +86,7 @@ void sort_list(orderProducts *head){
     if(head==NULL)
         return;
     int sorted,i,j,tempNum;
-    long int temp;
+    char temp[EAN_LEN];
     char tempWord[45];
     do
     {
@@ -100,9 +99,9 @@ void sort_list(orderProducts *head){
                 min_elem=current->next;
             if(min_elem!=current)
             {
-                temp=current->productCode1;
-                current->productCode1=current->next->productCode1;
-                current->next->productCode1=temp;
+                strcpy(temp,current->productCode1); 
+                strcpy(current->productCode1,current->next->productCode1);
+                strcpy(current->next->productCode1,temp);
                 tempNum=current->quantify;
                 current->quantify=current->next->quantify;
                 current->next->quantify=tempNum;
@@ -117,14 +116,14 @@ void sort_list(orderProducts *head){
 }
 
 
-void print(order newOrder){
+void tempPrint(order newOrder){
     order* temp=&newOrder;
     printf("client code=%d\n",temp->clientCode);
     printf("business name=%s\n\n",temp->businessName);
 
 	orderProducts *temp2=temp->productList;
     while (temp2 != NULL) {
-        printf("product code=%ld\n", temp2->productCode1);
+        printf("product code=%s\n", temp2->productCode1);
         printf("quantify=%d\n", temp2->quantify);
         printf("first=%d\n", temp2->first);
         temp2 = temp2->next;
@@ -148,7 +147,7 @@ orderFIFO* createFIFO(order data) {
 
 orderFIFO* addOrderToFIFO(orderFIFO *head, orderFIFO *tail, order data){
     orderFIFO* newNode = createFIFO(data);
-    if (tail==NULL) {
+    if ((tail==NULL)&&(head==NULL)) {
         head = newNode;
         tail = newNode;
     } else {
@@ -158,19 +157,3 @@ orderFIFO* addOrderToFIFO(orderFIFO *head, orderFIFO *tail, order data){
 	return tail;
 }
 
-
-order removeOrderFromFIFO(orderFIFO *head,orderFIFO *tail) {
-
-    orderFIFO* temp = head;
-    order data = temp->data;
-    
-    if (head == tail) { // Only one element
-        tail = NULL;
-        head = NULL;
-    } else {
-        head = head->next;
-    }
-    
-    free(temp);
-    return data;
-}

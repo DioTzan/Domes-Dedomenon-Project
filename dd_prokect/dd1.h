@@ -2,6 +2,8 @@
 #define DD1_H
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define NAME_LEN 128
 #define MAX_PRODUCTS 200
@@ -19,7 +21,7 @@
 
 
 typedef struct orderProducts {
-    long int productCode1;
+    char productCode1[EAN_LEN];
     int quantify;                 
     int first;
     struct orderProducts *next;
@@ -46,7 +48,7 @@ typedef struct product {
 } product;
 
 //storage for products
-extern product products[MAX_PRODUCTS];
+extern product products[MAX_PRODUCTS];  //global
 extern int product_count;
 
 
@@ -60,7 +62,7 @@ void parse(char *input);
 void addProduct(void);
 order addOrder(void);
 void printStock(void);
-void makeOrder(orderFIFO* head);
+void makeOrder(orderFIFO* head,orderFIFO *tail);
 
 // utility functions used by addOrder
 void print(order newOrder);

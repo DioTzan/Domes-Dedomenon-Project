@@ -14,7 +14,7 @@ void parse(char *input);
 
 int main (void){
 
-    orderFIFO*head,*tail;
+    orderFIFO *head=NULL, *tail=NULL;
     int option;
     option = Menu();
     printf("Please give a command\n");
@@ -29,8 +29,12 @@ int main (void){
             case 3:    
                 printStock();
                 break;
-            case 4:    
-                makeOrder(head);
+            case 4:
+                if((head==NULL)&&(tail==NULL)){
+                    printf("there are no order to execute");
+                    break;
+                }
+                makeOrder(head,tail);
                 break;
             case 5:     //exit
                 printf("Exit\n");
@@ -40,16 +44,13 @@ int main (void){
                 break;
         }
         option=Menu();
-
    }while (option != 5);
-     
-
 
 return 0;
 }
 
 int Menu(void) {
-     printf("\n");
+    printf("\n");
     printf(BOLD MAGENTA "┌─────────────────────────┐\n" RESET);
     printf(BOLD MAGENTA "│" RESET BOLD CYAN "           Ε Α Ν         " RESET BOLD MAGENTA "│\n" RESET);
     printf(BOLD MAGENTA "└─────────────────────────┘\n\n" RESET);
