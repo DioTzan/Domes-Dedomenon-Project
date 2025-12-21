@@ -65,7 +65,6 @@ void printStock(void);
 void makeOrder(orderFIFO* head,orderFIFO *tail);
 
 // utility functions used by addOrder
-void print(order newOrder);
 void tempPrint(order newOrder);
 void sort_list(orderProducts *head);
 orderProducts* newProduct(orderProducts *head);
