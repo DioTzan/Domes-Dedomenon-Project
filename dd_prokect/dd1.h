@@ -51,7 +51,6 @@ typedef struct product {
 extern product products[MAX_PRODUCTS];  //global
 extern int product_count;
 
-
 //Menu displayed to the user — returns a choice 1..5 
 int Menu(void);
 
@@ -70,7 +69,6 @@ void sort_list(orderProducts *head);
 orderProducts* newProduct(orderProducts *head);
 orderFIFO* createFIFO(order data);
 orderFIFO* addOrderToFIFO(orderFIFO **head, orderFIFO **tail, order data);
-
 
 // utility functions used by executionOrder
 void print(order newOrder);
