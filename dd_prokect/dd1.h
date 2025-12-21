@@ -74,6 +74,7 @@ orderFIFO* addOrderToFIFO(orderFIFO **head, orderFIFO **tail, order data);
 
 // utility functions used by executionOrder
 void print(order newOrder);
+order exePrint(order Order);
 order removeOrderFromFIFO(orderFIFO **head,orderFIFO **tail);
 
 // utility functions used by addProduct
