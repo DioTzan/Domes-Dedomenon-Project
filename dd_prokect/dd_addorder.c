@@ -30,8 +30,7 @@ order addOrder(void){
 	printf("\nthanks for the order, now its completed.\n");
 
 	sort_list(newOrder.productList);
-    // // τεστινγ 
-    // tempPrint(newOrder);
+    tempPrint(newOrder);
 
     return newOrder;
 }
@@ -64,7 +63,6 @@ orderProducts* newProduct(orderProducts *head){
     if(flag==0){
         //den breuhke product
         printf("\nthere is no such of an product here\n");
-        free(new);
         return head;
     }
 	printf("\ngive us your quantify :");

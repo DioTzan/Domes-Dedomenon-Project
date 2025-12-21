@@ -7,19 +7,11 @@ void makeOrder(orderFIFO **head, orderFIFO **tail){
     {
         data=removeOrderFromFIFO(head,tail);        
         data=exePrint(data);
-        printf("\n\n");
-        freeProductList(data.productList);
+        
     } while ((*head != NULL)&&(*tail!=NULL));
 
 }
 
-void freeProductList(orderProducts *head) {
-    while (head != NULL) {
-        orderProducts *temp = head;
-        head = head->next;
-        free(temp);
-    }
-}
 
 order removeOrderFromFIFO(orderFIFO **head, orderFIFO **tail) {
 
@@ -72,7 +64,7 @@ order exePrint(order Order){
         /*printf("-Product code=%s\n", temp2->productCode1);
         printf("-Quantify=%d\n", temp2->quantify);
         printf("-First=%d\n", temp2->first);*/
-        for(i=0;i<product_count;i++){
+        for(i=0;i<MAX_PRODUCTS;i++){
             if (strcmp(products[i].ean ,temp2->productCode1)==0){
                 break;
             }
