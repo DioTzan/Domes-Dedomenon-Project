@@ -44,7 +44,7 @@ typedef struct product {
     char productName[NAME_LEN];     // product name
     char ean[EAN_LEN];      // EAN / string code
     int productVariable;    // variable/stock or other metadata
-    int productPrice;       // price (integer for demo)
+    double productPrice;       // price (integer for demo)
 } product;
 
 //storage for products

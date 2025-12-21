@@ -84,7 +84,7 @@ void addProduct(void) {
     trim_newline(NewProduct.productName);
 
     printf("Δωσε τιμη προϊοντος: ");
-    if (scanf("%d", &NewProduct.productPrice) != 1 || NewProduct.productPrice < 0) {
+    if (scanf("%lf", &NewProduct.productPrice) != 1 || NewProduct.productPrice < 0) {
         while ((getchar()) != '\n');
         printf("Λαθος τιμη.\n");
         return;

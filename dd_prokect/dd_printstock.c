@@ -22,7 +22,7 @@ void printStock(void) {
     if (strcmp(query, "*") == 0) {
         printf("--Γεματοι απο αποθεμα Μπροκολοκο  --\n");
         for (int i = 0; i < product_count; ++i) {
-            printf("%d: %s | EAN:%s | Price:%d | Stock:%d\n",
+            printf("%d: %s | EAN:%s | Price:%f | Stock:%d\n",
                    i, products[i].productName, products[i].ean,
                    products[i].productPrice, products[i].productVariable);
         }
@@ -39,7 +39,7 @@ void printStock(void) {
     for (int i = 0; i < product_count; ++i) {
         /* exact EAN match */
         if (strcmp(products[i].ean, query) == 0) {
-            printf("%d: %s | EAN:%s | Price:%d | Stock:%d\n",
+            printf("%d: %s | EAN:%s | Price:%f | Stock:%d\n",
                    i, products[i].productName, products[i].ean,
                    products[i].productPrice, products[i].productVariable);
             found = 1;
@@ -47,7 +47,7 @@ void printStock(void) {
         }
         /* EAN prefix match */
         if (qlen > 0 && strncmp(products[i].ean, query, qlen) == 0) {
-            printf("%d: %s | EAN:%s | Price:%d | Stock:%d\n",
+            printf("%d: %s | EAN:%s | Price:%f | Stock:%d\n",
                    i, products[i].productName, products[i].ean,
                    products[i].productPrice, products[i].productVariable);
             found = 1;
@@ -57,7 +57,7 @@ void printStock(void) {
         char name_low[NAME_LEN];
         to_lower(products[i].productName, name_low, sizeof(name_low));
         if (strstr(name_low, qlow) != NULL) {
-            printf("%d: %s | EAN:%s | Price:%d | Stock:%d\n",
+            printf("%d: %s | EAN:%s | Price:%f | Stock:%d\n",
                    i, products[i].productName, products[i].ean,
                    products[i].productPrice, products[i].productVariable);
             found = 1;
