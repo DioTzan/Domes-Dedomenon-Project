@@ -8,7 +8,7 @@ void makeOrder(orderFIFO* head, orderFIFO *tail){
     {
         data=removeOrderFromFIFO(head,tail);
         print(data);
-        
+
     } while ((head != NULL)&&(tail!=NULL));
 
 }
@@ -31,7 +31,7 @@ order removeOrderFromFIFO(orderFIFO *head,orderFIFO *tail) {
 }
 
 
-void Print(order Order){
+void print(order Order){
     order* temp=&Order;
     printf("#----Client code=%d ----#\n",temp->clientCode);
     printf("#----Business name=%s ----#\n\n  --- PRODUCTS ---\n",temp->businessName);
